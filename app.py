@@ -1,9 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask,render_template
+from random import randrange as r
 app = Flask(__name__)
-
-@app.route("/<name>")
+app.debug = True
+@app.route("/")
 def home():
-    return render_template('main.html',name2=name)
-
-if __name__== '__main__':
-    app.run(debug= True)
+    return render_template("index.html", randnum = r(0,r(0,1000000)))
