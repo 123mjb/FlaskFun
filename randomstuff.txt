@@ -1,0 +1,2 @@
+https://github.com/123mjb/Python/blob/master/strs/dfs/S2019/19EBUTTMi/My%20Work/Year_9/Computing/Python/Python/setup.py
+.\Scripts\Activate.ps1

@@ -1,7 +1,11 @@
 from flask import Flask,render_template
 from random import randrange as r
 app = Flask(__name__)
-app.debug = True
+txtfile=open('words.txt')
+
 @app.route("/")
 def home():
-    return render_template("index.html", randnum = r(0,r(0,1000000)))
+    return render_template("index.html", thing=txtfile.readline(r(0,466550)))
+
+if __name__ == '__main__':
+    app.run(debug=True)
