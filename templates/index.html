@@ -2,8 +2,17 @@
 <html>
 <head>
     <title>{{ thing }}</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-
+    <div id="content">
+        <p>Hello Codename {{ thing }}</p>
+        <p>Welcome back to <b>**redacted**</b></p>
+        <p>Below are links to the important sites.</p>
+        <p>Use responsibly</p>
+    </div>
+    <div id="Links">
+        <% for i in range(0,len(links)) %>
+    </div>
 </body>
 </html>
