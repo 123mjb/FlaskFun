@@ -5,4 +5,16 @@
     border: 5px solid #48ff00;
     text-align: center;
     font-size: 50px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+#Links {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border: #48ff00 5px solid;
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }

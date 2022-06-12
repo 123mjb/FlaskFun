@@ -6,13 +6,14 @@
 </head>
 <body>
     <div id="content">
-        <p>Hello Codename {{ thing }}</p>
-        <p>Welcome back to <b>**redacted**</b></p>
-        <p>Below are links to the important sites.</p>
-        <p>Use responsibly</p>
+        {% for i in lines %}
+        <p>{{ i }}</p>
+        {% endfor %}
     </div>
     <div id="Links">
-        <% for i in range(0,len(links)) %>
+        {% for i in range(0,links[0]|length) %}
+        <p><a href="{{ links[0][i] }}">{{ links[1][i] }}</a> - {{ links[2][i] }}</p>
+        {% endfor %}
     </div>
 </body>
 </html>
