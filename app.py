@@ -20,5 +20,10 @@ def info():
     text = ["I made it :)"]
     return render_template("index.html",links=[link_link,link_name,link_description],lines=text)
 
+@app.route("/games")
+def gamesfunc():
+    gamesnames=["undergarf","moomoo","lordz"]
+    gameslocs=["https://v6p9d9t4.ssl.hwcdn.net/html/5957883/index.html","https://moomoo.io/?adlt=strict&toWww=1&redig=CCB7B1F83172457296444BD3273EE65A","https://lordz.io/"]
+    return render_template("game.html",games=[gamesnames,gameslocs])
 if __name__ == '__main__':
     app.run(debug=True)
