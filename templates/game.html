@@ -7,8 +7,11 @@
     </head>
     <body>
         <iframe src="" id="gamer"></iframe>
+        <div id="buttons">
         {% for i in range(0,games[0]|length) %}
         <button onclick="gameload('{{ games[1][i] }}')">{{ games[0][i] }}</button>
         {% endfor %}
+        <button onclick="window.history.back()">Back</button>
+        </div>
     </body>
 </html>
