@@ -1,4 +1,4 @@
-from flask import Flask,render_template,g
+from flask import Flask,render_template,g,request
 from random import randrange as r
 import sqlite3
 
@@ -32,7 +32,7 @@ def home():
 @app.route("/Info")
 def info():
     global link_link,link_name,link_description
-    text = ["I made it :)","Now go do something important or cool."]
+    text = ["I made it :)","Now go do something important or cool. ༼ つ ◕_◕ ༽つ"]
     return render_template("index.html",links=[link_link,link_name,link_description],lines=text)
 
 @app.route("/games")
@@ -41,11 +41,16 @@ def gamesfunc():
     gameslocs=["https://v6p9d9t4.ssl.hwcdn.net/html/5957883/index.html","https://moomoo.io/?adlt=strict&toWww=1&redig=CCB7B1F83172457296444BD3273EE65A","https://lordz.io/","https://yexex.github.io/eagle/index.html"]
     return render_template("game.html",games=[gamesnames,gameslocs])
 
-@app.route("/search")
-@app.route("/search/<qry>")
+@app.route("/search",methods=['GET', 'POST'])
+@app.route("/search/<qry>",methods=['GET', 'POST'])
 def search():
-    if qry != None:
+    if qry in locals() or qry in globals():
+        
+    try:
+        print(qry)
         cur = get_db().cursor()
+    except NameError:
+        qry =   None
     return render_template("search.html", query=qry)
     
 if __name__ == '__main__':
