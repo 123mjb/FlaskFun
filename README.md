@@ -1,2 +1,2 @@
 # FlaskFun
--My project ill be working on to have fun
+-My project i'll be working on to have fun
