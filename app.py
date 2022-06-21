@@ -42,10 +42,8 @@ def gamesfunc():
     return render_template("game.html",games=[gamesnames,gameslocs])
 
 @app.route("/search",methods=['GET', 'POST'])
-@app.route("/search/<qry>",methods=['GET', 'POST'])
-def search():
-    if qry in locals() or qry in globals():
-        
+def search(): 
+    qry = request.args.get('username')  
     try:
         print(qry)
         cur = get_db().cursor()
