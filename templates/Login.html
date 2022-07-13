@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
     <header>
-
+        {% if query == None %}
+            <title>Search</title>
+        {% else %}
+            <title>{{ query }}'s HomePage</title>
+        {% endif %}
     </header>
     <body>
         {% if query == None %}
@@ -9,6 +13,8 @@
             <label for="username">username</label><br>
             <input type="text" id="username" name="username"><br>
         </form> 
+        {% else %}
+            <p>{{ query }}</p>
         {% endif %}
     </body>
 </html>

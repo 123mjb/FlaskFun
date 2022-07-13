@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Games</title>
         <script src="/static/script.js"></script>
         <link rel="stylesheet" href="/static/styles.css">
     </head>
     <body>
-        <iframe src="" id="gamer"></iframe>
+        <iframe src="" id="gamer" title="Gaming"></iframe>
         <div id="buttons">
         {% for i in range(0,games[0]|length) %}
         <button onclick="gameload('{{ games[1][i] }}')">{{ games[0][i] }}</button>
