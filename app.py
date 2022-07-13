@@ -49,10 +49,10 @@ def search():
         qry
     except NameError:
         qry = None
-    if cur.execute(f"SELECT EXISTS(SELECT INFO FROM USERS WHERE USERNAME = '{qry}')"):
-        print("Worked!")
-        print(str(cur.execute(f"SELECT INFO FROM USERS WHERE USERNAME = '{qry}'")))
-    return render_template("Login.html", query=qry)
+    if cur.execute(f"SELECT EXISTS(SELECT INFO FROM USERS WHERE USERNAME = '{qry}');").fetchone():
+        information = cur.execute(f"SELECT INFO FROM USERS WHERE USERNAME = '{qry}';").fetchone()[0]
+    else: information = None
+    return render_template("Login.html", query=qry, info=information)
     
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
     <header>
         {% if query == None %}
             <title>Search</title>
@@ -15,6 +18,10 @@
         </form> 
         {% else %}
             <p>{{ query }}</p>
+            {% if info != None %}
+            <p>{{ info }}</p>
+            {% endif %}
         {% endif %}
+        </div>
     </body>
 </html>
