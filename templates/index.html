@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ thing }}</title>
+    <title>{{ user }}</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
@@ -11,8 +11,8 @@
         {% endfor %}
     </div>
     <div id="Links">
-        {% for i in range(0,links[0]|length) %}
-        <p><a href="{{ links[0][i] }}">{{ links[1][i] }}</a> - {{ links[2][i] }}</p>
+        {% for i in range(0,links2|length) %}
+        <p><a href="{{ links2[i] }}">{{ link_name2[i] }}</a> - {{ link_description2[i] }}</p>
         {% endfor %}
     </div>
 </body>

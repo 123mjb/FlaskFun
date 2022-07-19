@@ -6,9 +6,9 @@ DATABASE = './static/database.db'
 app = Flask(__name__)
 txtfile=open('words.txt')
 
-link_link=["/Info","/","/games"]
-link_name=["Info","Homepage","Games"]
-link_description=["Description and makers","Main page with everything","Some Games"]
+link_link=["/Info","/","/games","/Login"]
+link_name=["Info","Homepage","Games","Login"]
+link_description=["Description and makers","Main page with everything","Some Games","Login"]
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -24,16 +24,25 @@ def close_connection(exception):
 
 @app.route("/")
 def home():
-    cname = txtfile.readline(r(0,466550))
     global link_link,link_name,link_description
-    text = [f"Hello Codename {cname}","Welcome back to **redacted**","Below are links to the important sites.","Use responsibly"]
-    return render_template("index.html", thing=cname,links=[link_link,link_name,link_description],lines=text)
+    username = request.args.get('username')
+    try:
+        q=username
+    except NameError:
+        username = None
+    text = [f"Hello Codename {username}","Welcome back to **redacted**","Below are links to the important sites.","Use responsibly"]
+    return render_template("index.html", user=username,links2= [i + f"?username={username}" for i in link_link] if username != None else link_link, link_name2=link_name,link_description2=link_description,lines=text)
 
 @app.route("/Info")
 def info():
     global link_link,link_name,link_description
+    username = request.args.get('username')
+    try:
+        q=username
+    except NameError:
+        username = None
     text = ["I made it :)","Now go do something important or cool. ༼ つ ◕_◕ ༽つ"]
-    return render_template("index.html",links=[link_link,link_name,link_description],lines=text)
+    return render_template("index.html",links2= [i + f"?username={username}" for i in link_link] if username != None else link_link, link_name2=link_name,link_description2=link_description,lines=text)
 
 @app.route("/games")
 def gamesfunc():
@@ -41,18 +50,24 @@ def gamesfunc():
     gameslocs=["https://v6p9d9t4.ssl.hwcdn.net/html/5957883/index.html","https://moomoo.io/?adlt=strict&toWww=1&redig=CCB7B1F83172457296444BD3273EE65A","https://lordz.io/","https://yexex.github.io/eagle/index.html","https://Github.com"]
     return render_template("game.html",games=[gamesnames,gameslocs])
 
+
+
 @app.route("/Login",methods=['GET', 'POST'])
 def search(): 
-    qry = request.args.get('username')  
+    global link_link, link_name, link_description
+    qry = request.args.get('username')
     cur = get_db().cursor()
     try:
-        qry
+        q=qry
     except NameError:
         qry = None
-    if cur.execute(f"SELECT EXISTS(SELECT INFO FROM USERS WHERE USERNAME = '{qry}');").fetchone():
-        information = cur.execute(f"SELECT INFO FROM USERS WHERE USERNAME = '{qry}';").fetchone()[0]
+        information = None
+    if qry != None:
+        if cur.execute(f"SELECT EXISTS(SELECT INFO FROM USERS WHERE USERNAME = '{qry}');").fetchone():
+                information = cur.execute(f"SELECT INFO FROM USERS WHERE USERNAME = '{qry}';").fetchone()[0]
+        else: information = None
     else: information = None
-    return render_template("Login.html", query=qry, info=information)
+    return render_template("Login.html", query=qry, info=information, links2= [i + f"?username={qry}" for i in link_link] if qry != None else link_link, link_name2=link_name)
     
 if __name__ == '__main__':
     app.run(debug=True)

@@ -17,11 +17,20 @@
             <input type="text" id="username" name="username"><br>
         </form> 
         {% else %}
-            <p>{{ query }}</p>
+        <div id="text_login_div">
             {% if info != None %}
-            <p>{{ info }}</p>
+            <p>{{ query }} - {{ info }}</p>
+            {% else %}
+            <p>{{ query }}</p>
             {% endif %}
-        {% endif %}
         </div>
+        <div id="buttons">
+            <form>
+            {% for i in range(0,links2|length) %}
+                <input id="buttons form" type="button" onclick="window.location.href='{{ links2[i] }}';" value="{{ link_name2[i] }}" />
+            {% endfor %}
+            </form>
+        </div>
+        {% endif %}
     </body>
 </html>
